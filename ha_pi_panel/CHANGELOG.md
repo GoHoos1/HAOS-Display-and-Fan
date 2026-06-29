@@ -1,0 +1,9 @@
+# Changelog
+
+## 0.1.0
+
+- Initial experimental release.
+- SSD1306 128x64 and 128x32 display support with optional SH1106 mode.
+- GPIO on/off fan backend, mock backend, experimental software PWM, and optional sysfs PWM.
+- MQTT discovery for fan, sensors, switch, select, and hardware fault entities.
+- Home Assistant API proxy support for display page entity tokens.

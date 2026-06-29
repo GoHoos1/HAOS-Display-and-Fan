@@ -1,0 +1,29 @@
+configuration:
+  log_level:
+    name: Log level
+    description: Verbosity for add-on logs.
+  mock_hardware:
+    name: Mock hardware
+    description: Run without touching I2C or GPIO hardware.
+  device_name:
+    name: Device name
+    description: Name shown for the MQTT device in Home Assistant.
+  mqtt_enabled:
+    name: MQTT enabled
+    description: Publish MQTT discovery and state when the MQTT service is available.
+  display_enabled:
+    name: Display enabled
+    description: Render status pages on the OLED.
+  display_type:
+    name: Display type
+    description: OLED controller and size.
+  fan_enabled:
+    name: Fan enabled
+    description: Enable fan control.
+  fan_control_method:
+    name: Fan control method
+    description: Select off, GPIO on/off, experimental software PWM, or sysfs PWM.
+  fan_mode:
+    name: Fan mode
+    description: Auto curve, manual percentage, or off with fail-safe override.
+network: {}

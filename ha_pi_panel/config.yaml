@@ -1,0 +1,92 @@
+name: HA Pi Panel
+slug: ha_pi_panel
+description: OLED status display and fan controller for Home Assistant OS on Raspberry Pi.
+version: 0.1.0
+url: https://github.com/local/ha-pi-panel
+arch:
+  - aarch64
+startup: application
+boot: auto
+stage: experimental
+init: false
+homeassistant_api: true
+gpio: false
+services:
+  - mqtt:need
+devices:
+  - /dev/i2c-1
+  - /dev/gpiochip0
+options:
+  log_level: info
+  mock_hardware: false
+  device_name: HA Pi Panel
+  mqtt_enabled: true
+  mqtt_base_topic: ha_pi_panel
+  mqtt_discovery_prefix: homeassistant
+  metrics_poll_seconds: 5
+  ha_entity_poll_seconds: 10
+  display_enabled: true
+  display_type: ssd1306_128x64
+  display_i2c_device: /dev/i2c-1
+  display_i2c_address: "0x3C"
+  display_width: 128
+  display_height: 64
+  display_rotate: 0
+  display_contrast: 128
+  display_invert: false
+  display_refresh_seconds: 2
+  display_page_seconds: 6
+  display_blank_when_idle: false
+  display_pages_json: >-
+    [{"name":"System","lines":["HA Pi Panel","IP: {ip}","CPU: {cpu_temp_c}C","RAM: {mem_percent}%"]},{"name":"Home","lines":["Outside {ha:sensor.outdoor_temperature}","Weather {ha:weather.home}","{time}"]}]
+  fan_enabled: true
+  fan_control_method: gpio_onoff
+  fan_gpiochip: /dev/gpiochip0
+  fan_gpio_line: 18
+  fan_active_high: true
+  fan_pwm_frequency_hz: 25000
+  fan_min_percent: 25
+  fan_kickstart_percent: 100
+  fan_kickstart_seconds: 1
+  fan_mode: auto
+  fan_manual_percent: 50
+  fan_curve_json: >-
+    [{"temp_c":45,"percent":0},{"temp_c":55,"percent":35},{"temp_c":65,"percent":70},{"temp_c":75,"percent":100}]
+  fan_fail_safe_temp_c: 80
+  fan_shutdown_behavior: "on"
+schema:
+  log_level: list(trace|debug|info|warning|error)
+  mock_hardware: bool
+  device_name: str
+  mqtt_enabled: bool
+  mqtt_base_topic: str
+  mqtt_discovery_prefix: str
+  metrics_poll_seconds: int(1,300)
+  ha_entity_poll_seconds: int(1,300)
+  display_enabled: bool
+  display_type: list(ssd1306_128x64|ssd1306_128x32|sh1106_128x64)
+  display_i2c_device: str
+  display_i2c_address: str
+  display_width: int
+  display_height: int
+  display_rotate: list(0|90|180|270)
+  display_contrast: int(0,255)
+  display_invert: bool
+  display_refresh_seconds: int(1,300)
+  display_page_seconds: int(1,300)
+  display_blank_when_idle: bool
+  display_pages_json: str
+  fan_enabled: bool
+  fan_control_method: list(off|gpio_onoff|software_pwm|sysfs_pwm)
+  fan_gpiochip: str
+  fan_gpio_line: int
+  fan_active_high: bool
+  fan_pwm_frequency_hz: int
+  fan_min_percent: int(0,100)
+  fan_kickstart_percent: int(0,100)
+  fan_kickstart_seconds: int(0,10)
+  fan_mode: list(auto|manual|off)
+  fan_manual_percent: int(0,100)
+  fan_curve_json: str
+  fan_fail_safe_temp_c: int
+  fan_shutdown_behavior: list(off|on|leave)
