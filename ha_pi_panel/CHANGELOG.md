@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- Fix add-on startup by sourcing bashio before using bashio logging and service helpers.
+
 ## 0.1.0
 
 - Initial experimental release.
